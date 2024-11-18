@@ -1,4 +1,6 @@
+import 'package:dailydiu/screen/auth/forget_screen.dart';
 import 'package:dailydiu/screen/auth/login_screen.dart';
+import 'package:dailydiu/screen/auth/reg_screen.dart';
 import 'package:dailydiu/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DailyDiu',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -21,6 +24,8 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
+        RegScreen.id: (context) => const RegScreen(),
+        ForgetScreen.id: (context) => const ForgetScreen(),
       },
     );
   }

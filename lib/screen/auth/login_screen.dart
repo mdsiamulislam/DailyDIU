@@ -1,4 +1,7 @@
+import 'package:dailydiu/component/widget/custom_text_field.dart';
 import 'package:dailydiu/constant/design.dart';
+import 'package:dailydiu/screen/auth/forget_screen.dart';
+import 'package:dailydiu/screen/auth/reg_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../home_screen.dart';
@@ -24,26 +27,9 @@ class LoginScreen extends StatelessWidget {
                   'Login',style: kauthTitleStyle,
                 ),
                 const SizedBox(height: 10),
-                const TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration:  InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text('Email'),
-                    hintText: 'Enter your email',
-                    prefixIcon: Icon(Icons.email),
-                  ),
-                ),
+                CustomTextField(keyboardType: TextInputType.emailAddress, lasbels: 'Email', hintText: 'Enter Your Name', prefixIcon: Icon(Icons.email)),
                 const SizedBox(height: 8),
-                const TextField(
-                  obscureText: true,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text("Password"),
-                    hintText: 'Enter your password',
-                    prefixIcon: Icon(Icons.lock),
-                  ),
-                ),
+                CustomTextField(keyboardType: TextInputType.visiblePassword, lasbels: 'Password', hintText: 'Enter Your Password', prefixIcon: Icon(Icons.lock), obscureText: true,),
                 const SizedBox(height: 8),
                 SizedBox(
                   width: double.infinity,
@@ -72,7 +58,9 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const Text('Don\'t have an account?'),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, RegScreen.id);
+                      },
                       child: const Text('Register'),
                     ),
                   ],
@@ -82,7 +70,9 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, ForgetScreen.id);
+                      },
                       child: const Text('Forget Password?'),
                     ),
                   ],
