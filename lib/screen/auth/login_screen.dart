@@ -3,6 +3,7 @@ import 'package:dailydiu/constant/design.dart';
 import 'package:dailydiu/screen/auth/forget_screen.dart';
 import 'package:dailydiu/screen/auth/reg_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../home_screen.dart';
 
@@ -12,6 +13,12 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    void SaveToken(String token) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', token);
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -43,6 +50,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, HomeScreen.id);
+                      SaveToken('ewrwejkdsnsuwerewinjsddksurwe');
                     },
                     child: const Text('Login',style: TextStyle(
                       fontSize: 16,
