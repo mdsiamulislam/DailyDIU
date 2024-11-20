@@ -6,88 +6,144 @@ import '../home_screen.dart';
 import 'login_screen.dart';
 
 class RegScreen extends StatelessWidget {
-  static final String id = 'reg_screen';
+  static const String id = 'reg_screen';
+
   const RegScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children:[
-                const SizedBox( height: 50 ),
-                Image(image: AssetImage('assets/logo/diulogo.png'),width: 100,),
-                const SizedBox( height: 20 ),
-                Text(
-                  'Registation Now',style: kauthTitleStyle,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40),
+              Center(
+                child: Image.asset(
+                  'assets/logo/diulogo.png',
+                  width: 120,
                 ),
-                const SizedBox(height: 10),
-                CustomTextField(keyboardType: TextInputType.name, lasbels: 'Name', hintText: 'Enter Your name', prefixIcon: const Icon(Icons.person),),
-                SizedBox(height: 8),
-                CustomTextField( keyboardType: TextInputType.emailAddress, lasbels: 'Email', hintText: 'Enter your email', prefixIcon: const Icon(Icons.email),),
-                SizedBox(height: 8),
-                CustomTextField( keyboardType: TextInputType.visiblePassword, lasbels: 'Password', hintText: 'Enter your password', prefixIcon: const Icon(Icons.lock),obscureText: true,),
-                SizedBox(height: 8),
-                // Registation Number
-                CustomTextField( keyboardType: TextInputType.number, lasbels: 'Registation Number', hintText: 'Enter your Registation Number', prefixIcon: const Icon(Icons.confirmation_number),),
-                SizedBox(height: 8),
-                // Department Name
-                CustomTextField( keyboardType: TextInputType.name, lasbels: 'Department Name', hintText: 'Enter your Department Name', prefixIcon: const Icon(Icons.apartment),),
-                SizedBox(height: 8),
-                // Batch Name
-                CustomTextField( keyboardType: TextInputType.number, lasbels: 'Batch Name', hintText: 'Enter your Batch Name', prefixIcon: const Icon(Icons.confirmation_number),),
-                SizedBox(height: 8),
-                // Phone Number
-                CustomTextField( keyboardType: TextInputType.phone, lasbels: 'Phone Number', hintText: 'Enter your Phone Number', prefixIcon: const Icon(Icons.phone),),
-
-                //TODO: Image upload
-                const SizedBox(height: 8),
-
-                const SizedBox(height: 8),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
-                      padding: const EdgeInsets.all(16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(3),
-                      ),
+              ),
+              const SizedBox(height: 30),
+              Text(
+                'Register Now',
+                style: kauthTitleStyle.copyWith(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Create an account to access all features.',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey.shade600,
+                ),
+              ),
+              const SizedBox(height: 30),
+              CustomTextField(
+                keyboardType: TextInputType.name,
+                label: 'Name',
+                hintText: 'Enter your name',
+                prefixIcon: const Icon(Icons.person),
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                keyboardType: TextInputType.emailAddress,
+                label: 'Email',
+                hintText: 'Enter your email',
+                prefixIcon: const Icon(Icons.email),
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                keyboardType: TextInputType.visiblePassword,
+                label: 'Password',
+                hintText: 'Enter your password',
+                prefixIcon: const Icon(Icons.lock),
+                obscureText: true,
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                keyboardType: TextInputType.number,
+                label: 'Registration Number',
+                hintText: 'Enter your registration number',
+                prefixIcon: const Icon(Icons.confirmation_number),
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                keyboardType: TextInputType.name,
+                label: 'Department Name',
+                hintText: 'Enter your department name',
+                prefixIcon: const Icon(Icons.apartment),
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                keyboardType: TextInputType.number,
+                label: 'Batch Name',
+                hintText: 'Enter your batch name',
+                prefixIcon: const Icon(Icons.group),
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                keyboardType: TextInputType.phone,
+                label: 'Phone Number',
+                hintText: 'Enter your phone number',
+                prefixIcon: const Icon(Icons.phone),
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, HomeScreen.id);
-                    },
-                    child: const Text('Sing Up',style: TextStyle(
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, HomeScreen.id);
+                  },
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                    )
                     ),
                   ),
                 ),
-                SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Already have an account?'),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, LoginScreen.id);
-                      },
-                      child: const Text('Login'),
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Already have an account?',
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, LoginScreen.id);
+                    },
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple,
+                      ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
     );
-    
   }
 }
