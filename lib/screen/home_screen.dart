@@ -1,20 +1,39 @@
+import 'package:dailydiu/screen/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
 
   static final String id = 'home_screen';
 
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
-    String Token = '';
-    void GetToken() async {
+
+    void isLogged() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('token');
-      Token = token!;
+      bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+      if (!isLoggedIn) {
+        Navigator.pushReplacementNamed(context, LoginScreen.id);
+      }
     }
+
+    void getToken() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('token') ?? '';
+      print(token);
+    }
+
+    setState(() {
+      isLogged();
+      getToken();
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +43,9 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(Token),
+            Text(
+              'You have successfully logged in!',
+            ),
           ],
         ),
       ),

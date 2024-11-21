@@ -7,19 +7,53 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../home_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
 
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Save token to shared preferences
-    void saveToken(String token) async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('token', token);
-    }
+  _LoginScreenState createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  void _login() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+
+    await prefs.setBool('isLoggedIn', true);
+    await prefs.setString('token', 'mock_token');
+    // Mock token and login process
+    // if (_emailController.text == "admin" &&
+    //     _passwordController.text == "admin") {
+    //   await prefs.setBool('isLoggedIn', true);
+    //   await prefs.setString('token', 'mock_token');
+    //
+    //   // Navigate to HomeScreen
+    //   Navigator.pushReplacementNamed(context, HomeScreen.id);
+    // } else {
+    //   // Show an error dialog if credentials are invalid
+    //   showDialog(
+    //     context: context,
+    //     builder: (context) => AlertDialog(
+    //       title: const Text('Login Failed'),
+    //       content: const Text('Invalid email or password. Please try again.'),
+    //       actions: [
+    //         TextButton(
+    //           onPressed: () => Navigator.pop(context),
+    //           child: const Text('OK'),
+    //         ),
+    //       ],
+    //     ),
+    //   );
+    // }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -92,10 +126,7 @@ class LoginScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, HomeScreen.id);
-                    saveToken('ewrwejkdsnsuwerewinjsddksurwe');
-                  },
+                  onPressed: _login,
                   child: const Text(
                     'Login',
                     style: TextStyle(
@@ -134,5 +165,12 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }
