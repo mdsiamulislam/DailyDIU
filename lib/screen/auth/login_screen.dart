@@ -22,34 +22,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-
     await prefs.setBool('isLoggedIn', true);
     await prefs.setString('token', 'mock_token');
-    // Mock token and login process
-    // if (_emailController.text == "admin" &&
-    //     _passwordController.text == "admin") {
-    //   await prefs.setBool('isLoggedIn', true);
-    //   await prefs.setString('token', 'mock_token');
-    //
-    //   // Navigate to HomeScreen
-    //   Navigator.pushReplacementNamed(context, HomeScreen.id);
-    // } else {
-    //   // Show an error dialog if credentials are invalid
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) => AlertDialog(
-    //       title: const Text('Login Failed'),
-    //       content: const Text('Invalid email or password. Please try again.'),
-    //       actions: [
-    //         TextButton(
-    //           onPressed: () => Navigator.pop(context),
-    //           child: const Text('OK'),
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // }
+      Navigator.pushReplacementNamed(context, HomeScreen.id);
   }
 
   @override
