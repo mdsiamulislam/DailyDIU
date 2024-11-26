@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String token = '';
+  int currentPageIndex = 0;
 
   @override
   void initState() {
@@ -44,7 +45,34 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Demo Home Page'),
-      ),
+      ),bottomNavigationBar: NavigationBar(
+      onDestinationSelected: (int index) {
+        setState(() {
+          currentPageIndex = index;
+          print(currentPageIndex);
+        });
+      },
+      indicatorColor: Colors.white,
+      selectedIndex: currentPageIndex,
+      destinations: const <Widget>[
+        NavigationDestination(
+          selectedIcon: Icon(Icons.home),
+          icon: Icon(Icons.home_outlined),
+          label: 'Home',
+        ),
+        NavigationDestination(
+          icon: Badge(child: Icon(Icons.notifications_sharp)),
+          label: 'Notifications',
+        ),
+        NavigationDestination(
+          icon: Badge(
+            label: Text('2'),
+            child: Icon(Icons.messenger_sharp),
+          ),
+          label: 'Messages',
+        ),
+      ],
+    ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
