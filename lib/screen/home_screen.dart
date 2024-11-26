@@ -1,4 +1,5 @@
 import 'package:dailydiu/screen/auth/login_screen.dart';
+import 'package:dailydiu/screen/club/browse_club.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,6 +50,14 @@ class _HomeScreenState extends State<HomeScreen> {
       onDestinationSelected: (int index) {
         setState(() {
           currentPageIndex = index;
+          switch (index){
+            case 0:{
+              print(index);
+            }break;
+            case 2:{
+              Navigator.pushNamed(context, BrowseClub.id);
+            }break;
+          }
           print(currentPageIndex);
         });
       },
@@ -67,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
         NavigationDestination(
           icon: Badge(
             label: Text('2'),
-            child: Icon(Icons.messenger_sharp),
+            child: Icon(Icons.diversity_3),
           ),
           label: 'Messages',
         ),
