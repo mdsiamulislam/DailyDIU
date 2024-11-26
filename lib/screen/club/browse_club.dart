@@ -10,7 +10,7 @@ class BrowseClub extends StatelessWidget {
   Widget build(BuildContext context) {
     // Dummy data for clubs and events
     final clubs = [
-      {'name': 'Programming Club', 'description': 'Learn to code!', 'logo': Icons.code},
+      {'name': 'DIU Computer Programming Club', 'description': 'Learn to code!', 'logo': Icons.code},
       {'name': 'Photography Club', 'description': 'Capture the moment.', 'logo': Icons.camera_alt},
       {'name': 'Music Club', 'description': 'Feel the rhythm.', 'logo': Icons.music_note},
     ];
@@ -26,7 +26,7 @@ class BrowseClub extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Browse Clubs'),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.purple,
       ),
       body: SingleChildScrollView(
         child: Padding(
