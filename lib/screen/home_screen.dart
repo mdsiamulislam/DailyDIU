@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dailydiu/screen/auth/login_screen.dart';
@@ -41,133 +42,134 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text('Flutter Demo Home Page'),
+        automaticallyImplyLeading: false,
+        title: const Text('Home'),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentPageIndex,
+        onTap: (int index) {
           setState(() {
             currentPageIndex = index;
-            switch (index) {
-              case 0:
-                print('Home Selected');
-                break;
-              case 2:
-                Navigator.pushNamed(context, BrowseClub.id);
-                break;
+            if (index == 1) {
+              Navigator.pushNamed(context, BrowseClub.id);
+            }else if (index == 2) {
+              // Open Side Drower Menu
+              _scaffoldKey.currentState?.openDrawer();
+
             }
           });
         },
-        indicatorColor: Colors.white,
-        selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
+        items: const [
+          BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
-          NavigationDestination(
-            icon: Badge(child: Icon(Icons.notifications_sharp)),
-            label: 'Notifications',
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Clubs',
           ),
-          NavigationDestination(
-            icon: Badge(
-              label: Text('2'),
-              child: Icon(Icons.diversity_3),
-            ),
-            label: 'Find Your Club',
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu),
+            label: 'Menu',
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile Header
+            // Profile Header Section
             Container(
-              padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(20),
                 ),
               ),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(
-                      'https://via.placeholder.com/150', // Replace with user's profile image
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    "Md. Ifram Dewan",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Text(
-                    "D-78(A)",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white70,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              // Making Image caraousel
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  height: 200,
+                  viewportFraction: 1,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 5),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  pauseAutoPlayOnTouch: true,
+                  enlargeCenterPage: true,
+                ),
+                items: [
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8, horizontal: 16),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blue[100],
                     ),
-                    child: const Text(
-                      "Current Streak: 15 Days",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Center(
+                      child: Image(image: NetworkImage('https://scontent.fdac138-1.fna.fbcdn.net/v/t39.30808-6/468429938_1579762012835795_1147296313201999674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEuF_nh-4ZHeAcRjIYDG_AnqHGSHO-BM8mocZIc74EzyYwRPREl0doE3h9_aru8OjMmItEiXazKqLQCis4xsA9k&_nc_ohc=VN5l19Zp_OsQ7kNvgH2GVz1&_nc_zt=23&_nc_ht=scontent.fdac138-1.fna&_nc_gid=AvDFht5ehBeL0qHoPMM7hZG&oh=00_AYCBlEhDNEAUmRE0qsZQVUFMRTB2-mb9SXNcryp1_W2DVQ&oe=674CC5D5')),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blue[200],
+                    ),
+                    child: Center(
+                      child: Image(image: NetworkImage('https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-6/468353222_1578922429586420_4997878008843944343_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEYn_FCjeqGNhM8zVpEDkR2dwMKvgigZlh3Awq-CKBmWCcsxoGOQdZLMa0-qGAdx5Lw_BvWtaORfr36i4e87aVo&_nc_ohc=NbGQ3ECYkGgQ7kNvgEWM2Z-&_nc_zt=23&_nc_ht=scontent.fdac138-2.fna&_nc_gid=AM2dVaiWxAkaXSlIKViJGIa&oh=00_AYBB7haEfN_P4yFsqlEOnD0Dvwd2T9t9_MKlweFSg_8dMg&oe=674CCA59')),
+
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blue[300],
+                    ),
+                    child: Center(
+                      child: Image(image: NetworkImage('https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-6/467896506_1576423966502933_8684493160978334166_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGqDW3sFhw8wV8x6hHlbKAmJ810gEjHiuUnzXSASMeK5fhFxT5qsmIX45Bgv-Igm4Ci995Ax3513pLA77haEeRl&_nc_ohc=7QzbiMk4ttUQ7kNvgFasbdi&_nc_zt=23&_nc_ht=scontent.fdac138-2.fna&_nc_gid=Au0pGyT_51OCXZsk-6DDQBj&oh=00_AYDM1w5sM81LMRvr6PZA2mPZgY-CBanyKXbrj1YuQdwFbQ&oe=674CC07F')),
+
                     ),
                   ),
                 ],
-              ),
+              )
             ),
             const SizedBox(height: 20),
-            // Feature Grid
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: GridView.count(
-                shrinkWrap: true,
+
+            // Features Section
+            _SectionHeader(title: "Features"),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                physics: const NeverScrollableScrollPhysics(),
-                children: const [
-                  _FeatureIcon(icon: Icons.leaderboard, label: "LEADERBOARD"),
-                  _FeatureIcon(icon: Icons.today, label: "Daily Streak"),
-                  _FeatureIcon(icon: Icons.group_add, label: "JOIN CLUB"),
-                  _FeatureIcon(icon: Icons.lightbulb, label: "IDEA"),
-                  _FeatureIcon(
-                      icon: Icons.volunteer_activism, label: "VOLUNTEER"),
-                  _FeatureIcon(icon: Icons.person, label: "Personal Data"),
-                  _FeatureIcon(icon: Icons.badge, label: "Certificates"),
-                  _FeatureIcon(icon: Icons.support, label: "Support"),
-                ],
               ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              itemCount: _features.length,
+              itemBuilder: (context, index) {
+                return _FeatureIcon(
+                  icon: _features[index]['icon'] as IconData,
+                  label: _features[index]['label'] as String,
+                );
+              },
             ),
             const SizedBox(height: 20),
-            // Clubs Section
+
+            // Your Clubs Section
             _SectionHeader(title: "Your Clubs"),
-            Padding(
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   _ClubCard(title: "DIU CPC"),
                   _ClubCard(title: "DIU CDS"),
@@ -176,7 +178,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            // Events Section
+
+            // Upcoming Events Section
             _SectionHeader(title: "Upcoming Events"),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -192,9 +195,39 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-    );
+      drawer: Drawer(
+        child: ListView(
+          children: const [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      );
   }
 }
+
+// Dummy Features Data
+const List<Map<String, dynamic>> _features = [
+  {'icon': Icons.leaderboard, 'label': "LEADERBOARD"},
+  {'icon': Icons.today, 'label': "Daily Streak"},
+  {'icon': Icons.group_add, 'label': "JOIN CLUB"},
+  {'icon': Icons.lightbulb, 'label': "IDEA"},
+  {'icon': Icons.volunteer_activism, 'label': "VOLUNTEER"},
+  {'icon': Icons.person, 'label': "Personal Data"},
+  {'icon': Icons.badge, 'label': "Certificates"},
+  {'icon': Icons.support, 'label': "Support"},
+];
 
 class _FeatureIcon extends StatelessWidget {
   final IconData icon;
@@ -234,7 +267,7 @@ class _SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -265,16 +298,26 @@ class _ClubCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Text(
+    return Card(
+      margin: const EdgeInsets.only(right: 10),
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        width: 100,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.group,
+              color: Colors.blue,
+              size: 30,
+            ),
+            const SizedBox(height: 5),
+            Text(
               title,
               style: const TextStyle(fontSize: 12),
+              textAlign: TextAlign.center,
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -289,11 +332,13 @@ class _EventCard extends StatelessWidget {
     return Expanded(
       child: Card(
         child: Container(
-          height: 60,
-          alignment: Alignment.center,
-          child: const Text(
-            "Event",
-            style: TextStyle(fontSize: 12),
+          height: 80,
+          padding: const EdgeInsets.all(8),
+          child: const Center(
+            child: Text(
+              "Event",
+              style: TextStyle(fontSize: 14),
+            ),
           ),
         ),
       ),
