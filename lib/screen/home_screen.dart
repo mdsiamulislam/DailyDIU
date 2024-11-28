@@ -4,6 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dailydiu/screen/auth/login_screen.dart';
 import 'package:dailydiu/screen/club/browse_club.dart';
 
+import '../component/widget/club_card.dart';
+import '../component/widget/event_card.dart';
+import '../component/widget/feature_icon.dart';
+import '../component/widget/section_header.dart';
+import '../constant/features.dart';
+
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
 
@@ -144,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 20),
 
             // Features Section
-            _SectionHeader(title: "Features"),
+            SectionHeader(title: "Features"),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -154,41 +160,41 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: 10,
               ),
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: _features.length,
+              itemCount: features.length,
               itemBuilder: (context, index) {
-                return _FeatureIcon(
-                  icon: _features[index]['icon'] as IconData,
-                  label: _features[index]['label'] as String,
+                return FeatureIcon(
+                  icon: features[index]['icon'] as IconData,
+                  label: features[index]['label'] as String,
                 );
               },
             ),
             const SizedBox(height: 20),
 
             // Your Clubs Section
-            _SectionHeader(title: "Your Clubs"),
+            SectionHeader(title: "Your Clubs"),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: const [
-                  _ClubCard(title: "DIU CPC"),
-                  _ClubCard(title: "DIU CDS"),
-                  _ClubCard(title: "DIU FF"),
+                  ClubCard(title: "DIU CPC"),
+                  ClubCard(title: "DIU CDS"),
+                  ClubCard(title: "DIU FF"),
                 ],
               ),
             ),
             const SizedBox(height: 20),
 
             // Upcoming Events Section
-            _SectionHeader(title: "Upcoming Events"),
+            SectionHeader(title: "Upcoming Events"),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  _EventCard(),
-                  _EventCard(),
-                  _EventCard(),
+                  EventCard(),
+                  EventCard(),
+                  EventCard(),
                 ],
               ),
             ),
@@ -217,131 +223,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// Dummy Features Data
-const List<Map<String, dynamic>> _features = [
-  {'icon': Icons.leaderboard, 'label': "LEADERBOARD"},
-  {'icon': Icons.today, 'label': "Daily Streak"},
-  {'icon': Icons.group_add, 'label': "JOIN CLUB"},
-  {'icon': Icons.lightbulb, 'label': "IDEA"},
-  {'icon': Icons.volunteer_activism, 'label': "VOLUNTEER"},
-  {'icon': Icons.person, 'label': "Personal Data"},
-  {'icon': Icons.badge, 'label': "Certificates"},
-  {'icon': Icons.support, 'label': "Support"},
-];
 
-class _FeatureIcon extends StatelessWidget {
-  final IconData icon;
-  final String label;
 
-  const _FeatureIcon({required this.icon, required this.label});
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        CircleAvatar(
-          radius: 24,
-          backgroundColor: Colors.blue[100],
-          child: Icon(
-            icon,
-            color: Colors.blue,
-          ),
-        ),
-        const SizedBox(height: 5),
-        Text(
-          label,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 10),
-        ),
-      ],
-    );
-  }
-}
 
-class _SectionHeader extends StatelessWidget {
-  final String title;
 
-  const _SectionHeader({required this.title});
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const Text(
-            "See all",
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.blue,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ClubCard extends StatelessWidget {
-  final String title;
-
-  const _ClubCard({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(right: 10),
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        width: 100,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Icons.group,
-              color: Colors.blue,
-              size: 30,
-            ),
-            const SizedBox(height: 5),
-            Text(
-              title,
-              style: const TextStyle(fontSize: 12),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _EventCard extends StatelessWidget {
-  const _EventCard();
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Card(
-        child: Container(
-          height: 80,
-          padding: const EdgeInsets.all(8),
-          child: const Center(
-            child: Text(
-              "Event",
-              style: TextStyle(fontSize: 14),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
