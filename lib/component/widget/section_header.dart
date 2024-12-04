@@ -1,8 +1,10 @@
 
+import 'package:dailydiu/screen/features/all_features.dart';
 import 'package:flutter/material.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
+
 
   const SectionHeader({required this.title});
 
@@ -20,11 +22,16 @@ class SectionHeader extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Text(
-            "See all",
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.blue,
+          GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, AllFeatures.id);
+            },
+            child: const Text(
+              "See all",
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.blue,
+              ),
             ),
           ),
         ],

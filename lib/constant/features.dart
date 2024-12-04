@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 List<Map<String, dynamic>> features = [
-  {'icon': Icons.leaderboard, 'label': "LEADERBOARD"},
+  {'icon': Icons.leaderboard, 'label': "Leader"},
   const {'icon': Icons.today, 'label': "Daily Streak"},
   const {'icon': Icons.group_add, 'label': "JOIN CLUB"},
   const {'icon': Icons.lightbulb, 'label': "IDEA"},

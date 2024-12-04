@@ -7,6 +7,7 @@ import 'package:dailydiu/screen/club/browse_club.dart';
 import '../component/widget/club_card.dart';
 import '../component/widget/event_card.dart';
 import '../component/widget/feature_icon.dart';
+import '../component/widget/image_slider.dart';
 import '../component/widget/section_header.dart';
 import '../constant/features.dart';
 
@@ -56,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Home'),
+        title: const Text('Daily DIU'),
         backgroundColor: Colors.blue,
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -79,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.handshake_outlined),
             label: 'Clubs',
           ),
           BottomNavigationBarItem(
@@ -114,36 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   enlargeCenterPage: true,
                 ),
                 items: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.blue[100],
-                    ),
-                    child: Center(
-                      child: Image(image: NetworkImage('https://scontent.fdac138-1.fna.fbcdn.net/v/t39.30808-6/468429938_1579762012835795_1147296313201999674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEuF_nh-4ZHeAcRjIYDG_AnqHGSHO-BM8mocZIc74EzyYwRPREl0doE3h9_aru8OjMmItEiXazKqLQCis4xsA9k&_nc_ohc=VN5l19Zp_OsQ7kNvgH2GVz1&_nc_zt=23&_nc_ht=scontent.fdac138-1.fna&_nc_gid=AvDFht5ehBeL0qHoPMM7hZG&oh=00_AYCBlEhDNEAUmRE0qsZQVUFMRTB2-mb9SXNcryp1_W2DVQ&oe=674CC5D5')),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.blue[200],
-                    ),
-                    child: Center(
-                      child: Image(image: NetworkImage('https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-6/468353222_1578922429586420_4997878008843944343_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEYn_FCjeqGNhM8zVpEDkR2dwMKvgigZlh3Awq-CKBmWCcsxoGOQdZLMa0-qGAdx5Lw_BvWtaORfr36i4e87aVo&_nc_ohc=NbGQ3ECYkGgQ7kNvgEWM2Z-&_nc_zt=23&_nc_ht=scontent.fdac138-2.fna&_nc_gid=AM2dVaiWxAkaXSlIKViJGIa&oh=00_AYBB7haEfN_P4yFsqlEOnD0Dvwd2T9t9_MKlweFSg_8dMg&oe=674CCA59')),
-
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.blue[300],
-                    ),
-                    child: Center(
-                      child: Image(image: NetworkImage('https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-6/467896506_1576423966502933_8684493160978334166_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGqDW3sFhw8wV8x6hHlbKAmJ810gEjHiuUnzXSASMeK5fhFxT5qsmIX45Bgv-Igm4Ci995Ax3513pLA77haEeRl&_nc_ohc=7QzbiMk4ttUQ7kNvgFasbdi&_nc_zt=23&_nc_ht=scontent.fdac138-2.fna&_nc_gid=Au0pGyT_51OCXZsk-6DDQBj&oh=00_AYDM1w5sM81LMRvr6PZA2mPZgY-CBanyKXbrj1YuQdwFbQ&oe=674CC07F')),
-
-                    ),
-                  ),
+                  ImageSlider(imageUrl: 'https://scontent.fdac138-1.fna.fbcdn.net/v/t39.30808-6/468429938_1579762012835795_1147296313201999674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEuF_nh-4ZHeAcRjIYDG_AnqHGSHO-BM8mocZIc74EzyYwRPREl0doE3h9_aru8OjMmItEiXazKqLQCis4xsA9k&_nc_ohc=VN5l19Zp_OsQ7kNvgH2GVz1&_nc_zt=23&_nc_ht=scontent.fdac138-1.fna&_nc_gid=AvDFht5ehBeL0qHoPMM7hZG&oh=00_AYCBlEhDNEAUmRE0qsZQVUFMRTB2-mb9SXNcryp1_W2DVQ&oe=674CC5D5'),
+                  ImageSlider(imageUrl: 'https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-6/468353222_1578922429586420_4997878008843944343_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEYn_FCjeqGNhM8zVpEDkR2dwMKvgigZlh3Awq-CKBmWCcsxoGOQdZLMa0-qGAdx5Lw_BvWtaORfr36i4e87aVo&_nc_ohc=NbGQ3ECYkGgQ7kNvgEWM2Z-&_nc_zt=23&_nc_ht=scontent.fdac138-2.fna&_nc_gid=AM2dVaiWxAkaXSlIKViJGIa&oh=00_AYBB7haEfN_P4yFsqlEOnD0Dvwd2T9t9_MKlweFSg_8dMg&oe=674CCA59'),
+                  ImageSlider(imageUrl: 'https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-6/467896506_1576423966502933_8684493160978334166_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGqDW3sFhw8wV8x6hHlbKAmJ810gEjHiuUnzXSASMeK5fhFxT5qsmIX45Bgv-Igm4Ci995Ax3513pLA77haEeRl&_nc_ohc=7QzbiMk4ttUQ7kNvgFasbdi&_nc_zt=23&_nc_ht=scontent.fdac138-2.fna&_nc_gid=Au0pGyT_51OCXZsk-6DDQBj&oh=00_AYDM1w5sM81LMRvr6PZA2mPZgY-CBanyKXbrj1YuQdwFbQ&oe=674CC07F'),
                 ],
               )
             ),
@@ -203,8 +177,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: Drawer(
         child: ListView(
-          children: const [
-            DrawerHeader(
+          children: [
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
@@ -216,12 +190,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            const ListTile(
+              title: Text('Profile'),
+              leading: Icon(Icons.person),
+            ),
+            const ListTile(
+              title: Text('Settings'),
+              leading: Icon(Icons.settings),
+            ),
+            ListTile(
+              title: const Text('Logout'),
+              leading: const Icon(Icons.logout),
+              onTap: (){
+                // Clear Shared Preferences and Redirect to Login Screen
+                SharedPreferences.getInstance().then((prefs) {
+                  prefs.clear();
+                  Navigator.pushReplacementNamed(context, LoginScreen.id);
+                });
+              },
+            ),
           ],
         ),
       ),
       );
   }
 }
+
 
 
 
