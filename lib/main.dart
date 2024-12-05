@@ -4,6 +4,7 @@ import 'package:dailydiu/screen/auth/reg_screen.dart';
 import 'package:dailydiu/screen/club/browse_club.dart';
 import 'package:dailydiu/screen/features/all_features.dart';
 import 'package:dailydiu/screen/home_screen.dart';
+import 'package:dailydiu/screen/profile/profile_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         ForgetScreen.id: (context) => const ForgetScreen(),
         BrowseClub.id: (context) => const BrowseClub(),
         AllFeatures.id: (context) => const AllFeatures(),
+        ProfileHomeScreen.id: (context) => const ProfileHomeScreen(),
       },
     );
   }

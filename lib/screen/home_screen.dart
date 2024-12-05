@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dailydiu/screen/profile/profile_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dailydiu/screen/auth/login_screen.dart';
@@ -190,9 +191,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const ListTile(
-              title: Text('Profile'),
-              leading: Icon(Icons.person),
+            ListTile(
+              title: const Text('Profile'),
+              leading: const Icon(Icons.person),
+              onTap: (){
+                // Navigate to Profile Screen
+                Navigator.pushNamed(context, ProfileHomeScreen.id);
+              },
             ),
             const ListTile(
               title: Text('Settings'),
